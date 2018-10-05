@@ -36,9 +36,12 @@
     var directionsText = document.getElementById("directions-text");
     var winsText = document.getElementById("wins-text");
     var lossesText = document.getElementById("losses-text");
-    var attemptsText = document.getElementById("attempts-text");
-    var guessesText = document.getElementById("letters-guessed text");
+    var attemptsText = document.getElementById("attempts");
+    var guessesText = document.getElementById("letters-guessed");
     
+    // Randomly chooses a choice from the options array. This is the computer's guess.
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      console.log("Computer Guess: " + computerGuess);
     
 
       // This function is run whenever the user presses a key.
@@ -47,28 +50,24 @@
      // Determines which key was pressed.
      var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-      // Randomly chooses a choice from the options array. This is the computer's guess.
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
       directionsText.textContent = "Guess what letter I'm thinking of?: " + userGuess;
-      computerGuessText.textContent = "The computer chose: " + computerChoice;
+      //computerGuessText.textContent = "The computer chose: " + computerChoice;
       // computerChoicesText.textContent = "The computer chose:" + computerGuess;
        winsText.textContent = "Wins:" + wins;
        lossesText.textContent = "Losses:" + losses;  
-       attemptsText.textContent = "Guesses Left:" + guesses;
+       attemptsText.textContent = "Guesses Left:" + attempts;
        guessesText.textContent = "Guesses so far:" + guesses;
-      expected.left;
+      //expected.left;
 
       // This logic determines the outcome of the game when user guess matches computer guess.
-
     if (userGuess === computerGuess) {
         console.log("Match");
         wins++;
+        console.log(wins)
 
-      } if (attempts < 0) {
+      } if (attempts <= 0) {
         losses++;
-        attempts = 9;
-        guesses = [];
+        resetGame();
 
       } else {
         console.log("Sorry!");
@@ -77,6 +76,11 @@
       }
 
      
+     resetGame = function(){
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+       attempts = 9;
+       guesses = [];
+     }
      
 
     
